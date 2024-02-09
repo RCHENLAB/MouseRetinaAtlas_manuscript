@@ -28,7 +28,14 @@
         - scrnah5adumapby.sh: Creates UMAP plots for various metadata variables.
         - mergeimg2htmlbyjinja: Combines UMAP images into an HTML file.
 
-3. Pseudo-Bulk Differential Gene Expression:
+3. Dot Plot for Markers Across Cell Types
+
+Generating dot plots for marker genes across cell clusters and cell types is possible using:
+
+- scrnah5ad2seuratdotplot: Creates dot plots using Seurat.
+- scrnascanpypldotplot.sh: Generates dot plots using Scanpy's plotting library.
+
+4. Pseudo-Bulk Differential Gene Expression:
 
 - scrnah5adrawcounts2bulkby: Calculates pseudo-bulk for samples grouped by key values.
 - scrnah5ad2bulkdegcondtypebydeseq2: Performs differential gene expression analysis (DESeq2) between two conditions for cell types from a pseudo-bulk .h5ad file.
