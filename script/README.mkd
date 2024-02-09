@@ -1,0 +1,42 @@
+# Overview of scripts for the MRCA
+
+1. Pie charting:
+
+- rplotpiechart.sh: Generates pie charts using this script.
+
+2. Data integration with scVI:
+
+    2.1 Input data:
+
+    - Download the input file for MRCA from the CELLxGENE data collection: https://cellxgene.cziscience.com/collections/a0c84e3f-a5ca-4481-b3a5-ccfda0a81ecc. 
+
+    2.2 scVI installation via Conda:
+
+    We recommand creating a dedicated Conda environment for scVI using the following command:
+
+    ```
+    mamba create -y -n scvi anndata scanpy matplotlib scvi-tools pandas python=3.10 pytorch-gpu parallel leidenalg blas=*=openblas bash
+    ```
+
+    2.3 Data integration workflow:
+
+    - scrnah5adfiles2scviwkfl: Orchestrates data integration with scVI. Dependent scripts include:
+        - scrnah5adsubsetbyvaluecounts.sh: Filters low-count samples.
+        - scrnascvih5ad.sh: Performs scVI integration.
+        - scrnascanpycombinerawcountsscvi.sh: Creates a clean count matrix with UMAP and low-dimenstional embeddings from scVI.
+        - scrnah5ad2normscale.sh: Generates normalized counts from raw data.
+        - scrnah5adumapby.sh: Creates UMAP plots for various metadata variables.
+        - mergeimg2htmlbyjinja: Combines UMAP images into an HTML file.
+
+3. Dot Plot for Markers Across Cell Types
+
+Generating dot plots for marker genes across cell clusters and cell types is possible using:
+
+- scrnah5ad2seuratdotplot: Creates dot plots using Seurat.
+- scrnascanpypldotplot.sh: Generates dot plots using Scanpy's plotting library.
+
+4. Pseudo-Bulk Differential Gene Expression:
+
+- scrnah5adrawcounts2bulkby: Calculates pseudo-bulk for samples grouped by key values.
+- scrnah5ad2bulkdegcondtypebydeseq2: Performs differential gene expression analysis (DESeq2) between two conditions for cell types from a pseudo-bulk .h5ad file.
+
